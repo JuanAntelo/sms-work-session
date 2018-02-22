@@ -1,13 +1,15 @@
-angular.module('todoApp', []).controller('TodoListController', function($scope, $http) {
+angular.module('SMS', []).controller('mainController', function($scope, $http) {
   const endpointA = '/calcA';
   const endpointB = '/calcB';
 
+  $scope.done = false;
   $scope.result = 'value not yet calculated';
 
   $scope.valueA;
   $scope.valueB;
 
   $scope.trigger = function() {
+    $scope.done = false;
     $scope.result = 'getting the first value..';
 
     $http.get(endpointA).then(function(res){
@@ -20,7 +22,7 @@ angular.module('todoApp', []).controller('TodoListController', function($scope, 
 
       $scope.valueA = result;
 
-      $scope.result = 'Obtained the first value, getting the second value';
+      $scope.result = 'Obtained the first value, getting the second value...';
 
       getSecondValueThenCalc();
     },
@@ -46,7 +48,22 @@ angular.module('todoApp', []).controller('TodoListController', function($scope, 
   }
 
   function calc(a, b) {
-    $scope.result = a + b;
+    var sum = a + b;
+    $scope.sum = sum;
+    var factors = [];
+        
+    for (var i = 2; i <= sum; i++) {
+        while ((sum % i) === 0) {
+            factors.push(i);
+            sum /= i;
+        }
+    } 
+
+    $scope.result = factors.join(', ');
+
+    $scope.firstValue = $scope.valueA;
+    $scope.secondValue = $scope.valueB;
+    $scope.done = true;
   }
 
   function processErr() {

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html ng-app="todoApp">
+<html ng-app="SMS">
   <head>
     <meta charset="UTF-8">
     <title>Save my Sales Work Session</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
     <script src="app.js"></script>
     <link rel="stylesheet" type="text/css" href="app.css">
@@ -10,9 +11,18 @@
   <body>
   	<h2>Click on the button to calculate integer values from two predefined endpoints, and then compute the prime factors of the sum of those two input values</h2>
 
-    <div ng-controller="TodoListController">
+    <div ng-controller="mainController">
       <button ng-click="trigger()">button</button>
+    
+      <div ng-if="done">
+        <div>First value : {{firstValue}}</div>
+        <div>Second value : {{secondValue}}</div>
+        <div>Sum of the two values : {{sum}}</div>
+        <div>Prime Factors : </div>
+      </div>
+
       <div>{{result}}</div>
+    
     </div>
     
   </body>
