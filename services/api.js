@@ -1,4 +1,4 @@
-var request=require('request');
+var request = require('request');
 
 var endpointA = require('../endpoints/a')
 var endpointB = require('../endpoints/b');
