@@ -4,73 +4,8 @@
     <meta charset="UTF-8">
     <title>Save my Sales Work Session</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/superagent/3.8.2/superagent.min.js"></script>
-    <script>
+    <script src="app.js">
 
-
-   superagent
-   .get('http://dashboard.savemysales.co/devtest/2')
-   .then(function(res) {
-      console.log(res);
-      // res.body, res.headers, res.status
-   })
-   .catch(function(err) {
-      console.log(err);
-      // err.message, err.response
-   });
-
-    https://cdnjs.cloudflare.com/ajax/libs/superagent/3.8.2/superagent.min.js
-
-
-      angular.module('todoApp', []).controller('TodoListController', function($http) {
-        var endpointA = 'http://dashboard.savemysales.co/devtest/2';
-        var endpointB = 'http://dashboard.savemysales.co/devtest/1';
-
-
-        $http.get(endpointA).then(function(response){
-          processEndpoint1(response.data);
-        }, 
-          processEndpointError
-        );
-
-        function processEndpoint1(data) {
-          console.log('processEndpoint1' + data);
-
-          $http.get(endpointB).then(function(response){
-            processEndpoint2(response.data)
-          }, processEndpointError);
-        }
-
-        function processEndpoint2(data) {
-          console.log('processEndpoint2' + data);
-        }
-
-        function processEndpointError(response) {
-          console.log('error with an api request');
-        }
-
-/*
-        var todoList = this;
-        todoList.todos = [
-          {text:'learn AngularJS', done:true},
-          {text:'build an AngularJS app', done:false}
-        ];
- 
-        todoList.addTodo = function() {
-          todoList.todos.push({text:todoList.todoText, done:false});
-          todoList.todoText = '';
-        };
- 
-        todoList.remaining = function() {
-          var count = 0;
-          angular.forEach(todoList.todos, function(todo) {
-            count += todo.done ? 0 : 1;
-          });
-          return count;
-        };
-*/
-
-      });
     </script>
   </head>
   <body>
