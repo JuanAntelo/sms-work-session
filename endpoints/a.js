@@ -1,0 +1,1 @@
+module.exports = 'http://dashboard.savemysales.co/devtest/1';
