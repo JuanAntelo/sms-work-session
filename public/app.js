@@ -1,34 +1,55 @@
 angular.module('todoApp', []).controller('TodoListController', function($scope, $http) {
-  $scope.result = 'value not yet calculated';
-
-  $scope.trigger = function() {
-    $scope.result = 'calculating..';
-    setTimeout(function(){
-      $scope.result = 33;            
-    }, 1000);
-  }
-
   const endpointA = '/calcA';
   const endpointB = '/calcB';
 
-  $http.get(endpointA).then(function(response){
-    processEndpoint1(response.data);
-  },
-    processEndpointError
-  );
+  $scope.result = 'value not yet calculated';
 
-  function processEndpoint1(endpoint1Data) {
-    console.log('processEndpoint1 : ' + endpoint1Data);
-    $http.get(endpointB).then(function(endpoint2Data){
-      processEndpoint2(endpoint2Data.data)
-    }, processEndpointError);
+  $scope.valueA;
+  $scope.valueB;
+
+  $scope.trigger = function() {
+    $scope.result = 'getting the first value..';
+
+    $http.get(endpointA).then(function(res){
+      var result = parseInt(res.data);
+
+      if(result === NaN) {
+        $scope.result = 'there was an err with your request, contact support';
+        return;
+      }
+
+      $scope.valueA = result;
+
+      $scope.result = 'Obtained the first value, getting the second value';
+
+      getSecondValueThenCalc();
+    },
+      processErr
+    );
   }
 
-  function processEndpoint2(data) {
-    console.log('processEndpoint2 : ' + data);
+  function getSecondValueThenCalc() {
+    $http.get(endpointB).then(function(res){
+      var result = parseInt(res.data);
+
+      if(result === NaN) {
+        $scope.result = 'there was an err with your request, contact support';
+        return;
+      }
+
+      $scope.valueB = result;
+      
+      $scope.result = 'Obtained the second value, calculating';
+
+      calc($scope.valueA, $scope.valueB);
+    }, processErr);    
   }
 
-  function processEndpointError(response) {
-    console.log('error with an api request');
+  function calc(a, b) {
+    $scope.result = a + b;
+  }
+
+  function processErr() {
+    $scope.val = "There was an err with your request, please contact support!"
   }
 });
