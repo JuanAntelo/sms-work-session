@@ -4,36 +4,15 @@
     <meta charset="UTF-8">
     <title>Save my Sales Work Session</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
-    <script src="app.js">
-
-    </script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="app.css">
   </head>
   <body>
-  	<h2>Hi World</h2>
+  	<h2>Click on the button to calculate integer values from predefined endpoints, and then compute the prime factors of the sum of those two input values</h2>
 
-    <div ng-controller="TodoListController as todoList">
-      <div></div>
+    <div ng-controller="TodoListController">
+      <button ng-click="trigger()">button</button>
+      <div>{{result}}</div>
     </div>
-
-    <!--
-    <div ng-controller="TodoListController as todoList">
-      <span>
-      {{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
-      <ul class="unstyled">
-        <li ng-repeat="todo in todoList.todos">
-          <label class="checkbox">
-            <input type="checkbox" ng-model="todo.done">
-            <span class="done-{{todo.done}}">{{todo.text}}</span>
-          </label>
-        </li>
-      </ul>
-      <form ng-submit="todoList.addTodo()">
-        <input type="text" ng-model="todoList.todoText"  size="30"
-               placeholder="add new todo here">
-        <input class="btn-primary" type="submit" value="add">
-      </form>
-    </div>
-    -->
-
   </body>
 </html>
